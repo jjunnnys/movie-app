@@ -19,7 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "deploy": "gh-pages -d build",
-    "predeploy": "yarn bulid"
+    "predeploy": "yarn build"
   },
   "eslintConfig": {
     "extends": "react-app"
