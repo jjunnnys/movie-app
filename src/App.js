@@ -9,6 +9,7 @@ const App = () => {
     }, 3000);
     setIsLoading(true);
   }, []);
+
   return (
     <>
       <h1>{isLoading ? 'Loading...' : 'Complate!!'}</h1>
