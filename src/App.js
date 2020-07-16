@@ -1,18 +1,45 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Movie from './components/Movie';
 
 const App = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [state, setState] = useState({
+    isLoading: true,
+    movies: [],
+  });
+
+  const { isLoading, movies } = state;
+
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-      console.log('로딩 중...');
-    }, 3000);
-    setIsLoading(true);
+    async function getMoives() {
+      // data.data.movies 랑 같다
+      const {
+        data: {
+          data: { movies },
+        },
+      } = await axios.get(
+        'https://yts-proxy.now.sh/list_movies.json?sort_by=rating',
+      );
+      setState({ movies, isLoading: false });
+    }
+    getMoives();
   }, []);
 
   return (
     <>
-      <h1>{isLoading ? 'Loading...' : 'Complate!!'}</h1>
+      <div>
+        {isLoading
+          ? `Loading...`
+          : movies.map(({ id, year, title, summery, medium_cover_image }) => (
+              <Movie
+                key={id}
+                year={year}
+                title={title}
+                summery={summery}
+                poster={medium_cover_image}
+              />
+            ))}
+      </div>
     </>
   );
 };
