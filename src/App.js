@@ -27,19 +27,28 @@ const App = () => {
 
   return (
     <>
-      <div>
-        {isLoading
-          ? `Loading...`
-          : movies.map(({ id, year, title, summery, medium_cover_image }) => (
-              <Movie
-                key={id}
-                year={year}
-                title={title}
-                summery={summery}
-                poster={medium_cover_image}
-              />
-            ))}
-      </div>
+      <main className="container">
+        {isLoading ? (
+          <div className="loader">
+            <h1 className="loader__text">Loading...</h1>
+          </div>
+        ) : (
+          <section className="movies">
+            {movies.map(
+              ({ id, year, title, summary, medium_cover_image, genres }) => (
+                <Movie
+                  key={id}
+                  year={year}
+                  title={title}
+                  summary={summary}
+                  poster={medium_cover_image}
+                  genres={genres}
+                />
+              ),
+            )}
+          </section>
+        )}
+      </main>
     </>
   );
 };
