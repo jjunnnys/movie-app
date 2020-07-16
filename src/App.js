@@ -1,9 +1,17 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Home from './routes/Home';
+import About from './routes/About';
+import Navigation from './components/Navigation';
 
 const App = () => {
-  return <Route path="/" component={Home} exact />;
+  return (
+    <>
+      <Navigation />
+      <Route path="/" component={Home} exact />;
+      <Route path="/about" component={About} />;
+    </>
+  );
 };
 
 export default App;
