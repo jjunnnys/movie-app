@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Home.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import Movie from '../components/Movie';
 
 const Home = () => {
@@ -37,14 +38,25 @@ const Home = () => {
           <section className="movies">
             {movies.map(
               ({ id, year, title, summary, medium_cover_image, genres }) => (
-                <Movie
-                  key={id}
-                  year={year}
-                  title={title}
-                  summary={summary}
-                  poster={medium_cover_image}
-                  genres={genres}
-                />
+                <Link
+                  to={{
+                    pathname: `/movie/${id}`,
+                    year,
+                    title,
+                    summary,
+                    medium_cover_image,
+                    genres,
+                  }}
+                >
+                  <Movie
+                    key={id}
+                    year={year}
+                    title={title}
+                    summary={summary}
+                    poster={medium_cover_image}
+                    genres={genres}
+                  />
+                </Link>
               ),
             )}
           </section>
