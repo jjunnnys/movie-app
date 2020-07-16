@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-// import './Movie.css';
 
 const MovieDiv = styled.div`
   width: 45%;
